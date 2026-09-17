@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LibraryMaster - Automation System</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="logo">
+          <h1>Library<span>Master</span></h1>
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="#" class="nav-link active" data-page="dashboard"
+              ><i class="fas fa-home"></i> Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="books"
+              ><i class="fas fa-book"></i> Books</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="members"
+              ><i class="fas fa-users"></i> Members</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="transactions"
+              ><i class="fas fa-exchange-alt"></i> Transactions</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="reports"
+              ><i class="fas fa-chart-bar"></i> Reports</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="settings"
+              ><i class="fas fa-cog"></i> Settings</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search for books, members, transactions..."
+            />
+          </div>
+          <div class="user-profile">
+            <img
+              src="https://ui-avatars.com/api/?name=Librarian&background=f72585&color=fff"
+              alt="User"
+            />
+            <div>
+              <h4>Suchismita Behera</h4>
+              <p>Head Librarian</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page active">
+          <!-- Dashboard Cards -->
+          <div class="dashboard-cards">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-icon books-icon">
+                  <i class="fas fa-book"></i>
+                </div>
+              </div>
+              <h2>5,248</h2>
+              <p>Total Books</p>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-icon members-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+              <h2>1,873</h2>
+              <p>Registered Members</p>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-icon transactions-icon">
+                  <i class="fas fa-exchange-alt"></i>
+                </div>
+              </div>
+              <h2>324</h2>
+              <p>Active Transactions</p>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-icon revenue-icon">
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+              </div>
+              <h2>$1,240</h2>
+              <p>Revenue This Month</p>
+            </div>
+          </div>
+
+          <!-- Recent Books Section -->
+          <div class="section">
+            <div class="section-header">
+              <h3 class="section-title">Recently Added Books</h3>
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addBookModal')"
+              >
+                Add New Book
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>978-0451524935</td>
+                    <td>1984</td>
+                    <td>George Orwell</td>
+                    <td>Fiction, Dystopian</td>
+                    <td><span class="status available">Available</span></td>
+                    <td>
+                      <i
+                        class="fas fa-edit action-icon edit-icon"
+                        onclick="openModal('editBookModal')"
+                      ></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>978-0061120084</td>
+                    <td>To Kill a Mockingbird</td>
+                    <td>Harper Lee</td>
+                    <td>Fiction, Classic</td>
+                    <td><span class="status borrowed">Borrowed</span></td>
+                    <td>
+                      <i
+                        class="fas fa-edit action-icon edit-icon"
+                        onclick="openModal('editBookModal')"
+                      ></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>978-0544003415</td>
+                    <td>The Lord of the Rings</td>
+                    <td>J.R.R. Tolkien</td>
+                    <td>Fiction, Fantasy</td>
+                    <td><span class="status available">Available</span></td>
+                    <td>
+                      <i
+                        class="fas fa-edit action-icon edit-icon"
+                        onclick="openModal('editBookModal')"
+                      ></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recent Transactions Section -->
+          <div class="section">
+            <div class="section-header">
+              <h3 class="section-title">Recent Transactions</h3>
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addTransactionModal')"
+              >
+                New Transaction
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Transaction ID</th>
+                    <th>Book</th>
+                    <th>Member</th>
+                    <th>Issue Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#TRX-7842</td>
+                    <td>The Great Gatsby</td>
+                    <td>Michael Johnson</td>
+                    <td>Oct 12, 2023</td>
+                    <td>Oct 26, 2023</td>
+                    <td><span class="status borrowed">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>#TRX-7841</td>
+                    <td>Brave New World</td>
+                    <td>Sarah Williams</td>
+                    <td>Oct 10, 2023</td>
+                    <td>Oct 24, 2023</td>
+                    <td><span class="status overdue">Overdue</span></td>
+                  </tr>
+                  <tr>
+                    <td>#TRX-7840</td>
+                    <td>The Catcher in the Rye</td>
+                    <td>David Miller</td>
+                    <td>Oct 05, 2023</td>
+                    <td>Oct 19, 2023</td>
+                    <td><span class="status available">Returned</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Books Page -->
+        <div id="books" class="page">
+          <div class="section">
+            <div class="section-header">
+              <h3 class="section-title">All Books</h3>
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addBookModal')"
+              >
+                Add New Book
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>978-0451524935</td>
+                    <td>1984</td>
+                    <td>George Orwell</td>
+                    <td>Fiction, Dystopian</td>
+                    <td><span class="status available">Available</span></td>
+                    <td>
+                      <i
+                        class="fas fa-edit action-icon edit-icon"
+                        onclick="openModal('editBookModal')"
+                      ></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>978-0061120084</td>
+                    <td>To Kill a Mockingbird</td>
+                    <td>Harper Lee</td>
+                    <td>Fiction, Classic</td>
+                    <td><span class="status borrowed">Borrowed</span></td>
+                    <td>
+                      <i
+                        class="fas fa-edit action-icon edit-icon"
+                        onclick="openModal('editBookModal')"
+                      ></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>978-0544003415</td>
+                    <td>The Lord of the Rings</td>
+                    <td>J.R.R. Tolkien</td>
+                    <td>Fiction, Fantasy</td>
+                    <td><span class="status available">Available</span></td>
+                    <td>
+                      <i
+                        class="fas fa-edit action-icon edit-icon"
+                        onclick="openModal('editBookModal')"
+                      ></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>978-1400033416</td>
+                    <td>Beloved</td>
+                    <td>Toni Morrison</td>
+                    <td>Fiction, Classic</td>
+                    <td><span class="status overdue">Overdue</span></td>
+                    <td>
+                      <i
+                        class="fas fa-edit action-icon edit-icon"
+                        onclick="openModal('editBookModal')"
+                      ></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>978-0141439518</td>
+                    <td>Pride and Prejudice</td>
+                    <td>Jane Austen</td>
+                    <td>Fiction, Romance</td>
+                    <td><span class="status available">Available</span></td>
+                    <td>
+                      <i
+                        class="fas fa-edit action-icon edit-icon"
+                        onclick="openModal('editBookModal')"
+                      ></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other pages would go here with similar structure -->
+        <div id="members" class="page">
+          <div class="section">
+            <div class="section-header">
+              <h3 class="section-title">Library Members</h3>
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addMemberModal')"
+              >
+                Add New Member
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Membership Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>M001</td>
+                    <td>John Smith</td>
+                    <td>john.smith@example.com</td>
+                    <td>(555) 123-4567</td>
+                    <td>Jan 15, 2022</td>
+                    <td><span class="status available">Active</span></td>
+                    <td>
+                      <i class="fas fa-edit action-icon edit-icon"></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>M002</td>
+                    <td>Emily Johnson</td>
+                    <td>emilyj@example.com</td>
+                    <td>(555) 987-6543</td>
+                    <td>Mar 22, 2022</td>
+                    <td><span class="status available">Active</span></td>
+                    <td>
+                      <i class="fas fa-edit action-icon edit-icon"></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more pages for transactions, reports, settings as needed -->
+        <div id="transactions" class="page">
+          <div class="section">
+            <div class="section-header">
+              <h3 class="section-title">All Transactions</h3>
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addTransactionModal')"
+              >
+                New Transaction
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Transaction ID</th>
+                    <th>Book</th>
+                    <th>Member</th>
+                    <th>Issue Date</th>
+                    <th>Due Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#TRX-7842</td>
+                    <td>The Great Gatsby</td>
+                    <td>Michael Johnson</td>
+                    <td>Oct 12, 2023</td>
+                    <td>Oct 26, 2023</td>
+                    <td>-</td>
+                    <td><span class="status borrowed">Active</span></td>
+                    <td>
+                      <i class="fas fa-edit action-icon edit-icon"></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#TRX-7841</td>
+                    <td>Brave New World</td>
+                    <td>Sarah Williams</td>
+                    <td>Oct 10, 2023</td>
+                    <td>Oct 24, 2023</td>
+                    <td>-</td>
+                    <td><span class="status overdue">Overdue</span></td>
+                    <td>
+                      <i class="fas fa-edit action-icon edit-icon"></i>
+                      <i class="fas fa-trash action-icon delete-icon"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reports Page -->
+        <div id="reports" class="page">
+          <div class="section">
+            <div class="section-header">
+              <h3 class="section-title">Library Reports</h3>
+            </div>
+            <div class="dashboard-cards">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-icon books-icon">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                </div>
+                <h2>Monthly Usage</h2>
+                <p>View library usage statistics</p>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-icon members-icon">
+                    <i class="fas fa-user-check"></i>
+                  </div>
+                </div>
+                <h2>Member Activity</h2>
+                <p>See member engagement metrics</p>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-icon transactions-icon">
+                    <i class="fas fa-book-reader"></i>
+                  </div>
+                </div>
+                <h2>Popular Books</h2>
+                <p>Most borrowed books this month</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settings" class="page">
+          <div class="section">
+            <div class="section-header">
+              <h3 class="section-title">System Settings</h3>
+            </div>
+            <div class="form-group">
+              <label for="libraryName">Library Name</label>
+              <input
+                type="text"
+                id="libraryName"
+                value="Central Public Library"
+              />
+            </div>
+            <div class="form-group">
+              <label for="loanPeriod">Default Loan Period (days)</label>
+              <input type="number" id="loanPeriod" value="14" />
+            </div>
+            <div class="form-group">
+              <label for="maxBooks">Maximum Books per Member</label>
+              <input type="number" id="maxBooks" value="5" />
+            </div>
+            <div class="form-group">
+              <label for="fineRate">Daily Fine Rate ($)</label>
+              <input type="number" id="fineRate" value="0.25" step="0.01" />
+            </div>
+            <button class="btn btn-primary">Save Settings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Book Modal -->
+    <div id="addBookModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Add a New Book</h2>
+          <span class="close" onclick="closeModal('addBookModal')"
+            >&times;</span
+          >
+        </div>
+        <div class="modal-body">
+          <form id="addBookForm">
+            <div class="form-group">
+              <label for="bookTitle">Title</label>
+              <input type="text" id="bookTitle" name="title" required />
+            </div>
+            <div class="form-group">
+              <label for="bookAuthor">Author</label>
+              <input type="text" id="bookAuthor" name="author" required />
+            </div>
+            <div class="form-group">
+              <label for="bookIsbn">ISBN</label>
+              <input type="text" id="bookIsbn" name="isbn" required />
+            </div>
+            <div class="form-group">
+              <label for="bookCategory">Category</label>
+              <select id="bookCategory" name="category" required>
+                <option value="">Select a category...</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Non-Fiction">Non-Fiction</option>
+                <option value="Science">Science</option>
+                <option value="Technology">Technology</option>
+                <option value="History">History</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bookCopies">Number of Copies</label>
+              <input
+                type="number"
+                id="bookCopies"
+                name="copies"
+                min="1"
+                value="1"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%; margin-top: 15px"
+            >
+              Add to Library
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Book Modal -->
+    <div id="editBookModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Edit Book</h2>
+          <span class="close" onclick="closeModal('editBookModal')"
+            >&times;</span
+          >
+        </div>
+        <div class="modal-body">
+          <form id="editBookForm">
+            <div class="form-group">
+              <label for="editBookTitle">Title</label>
+              <input
+                type="text"
+                id="editBookTitle"
+                name="title"
+                value="1984"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="editBookAuthor">Author</label>
+              <input
+                type="text"
+                id="editBookAuthor"
+                name="author"
+                value="George Orwell"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="editBookIsbn">ISBN</label>
+              <input
+                type="text"
+                id="editBookIsbn"
+                name="isbn"
+                value="978-0451524935"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="editBookCategory">Category</label>
+              <select id="editBookCategory" name="category" required>
+                <option value="Fiction" selected>Fiction</option>
+                <option value="Non-Fiction">Non-Fiction</option>
+                <option value="Science">Science</option>
+                <option value="Technology">Technology</option>
+                <option value="History">History</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="editBookCopies">Number of Copies</label>
+              <input
+                type="number"
+                id="editBookCopies"
+                name="copies"
+                min="1"
+                value="3"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%; margin-top: 15px"
+            >
+              Update Book
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Member Modal -->
+    <div id="addMemberModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Add a New Member</h2>
+          <span class="close" onclick="closeModal('addMemberModal')"
+            >&times;</span
+          >
+        </div>
+        <div class="modal-body">
+          <form id="addMemberForm">
+            <div class="form-group">
+              <label for="memberName">Full Name</label>
+              <input type="text" id="memberName" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="memberEmail">Email</label>
+              <input type="email" id="memberEmail" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="memberPhone">Phone</label>
+              <input type="tel" id="memberPhone" name="phone" required />
+            </div>
+            <div class="form-group">
+              <label for="memberAddress">Address</label>
+              <textarea id="memberAddress" name="address" rows="3"></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%; margin-top: 15px"
+            >
+              Add Member
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div id="addTransactionModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Create New Transaction</h2>
+          <span class="close" onclick="closeModal('addTransactionModal')"
+            >&times;</span
+          >
+        </div>
+        <div class="modal-body">
+          <form id="addTransactionForm">
+            <div class="form-group">
+              <label for="transactionBook">Select Book</label>
+              <select id="transactionBook" name="book" required>
+                <option value="">Select a book...</option>
+                <option value="1">1984 by George Orwell</option>
+                <option value="2">To Kill a Mockingbird by Harper Lee</option>
+                <option value="3">
+                  The Lord of the Rings by J.R.R. Tolkien
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="transactionMember">Select Member</label>
+              <select id="transactionMember" name="member" required>
+                <option value="">Select a member...</option>
+                <option value="1">John Smith (M001)</option>
+                <option value="2">Emily Johnson (M002)</option>
+                <option value="3">Michael Brown (M003)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="transactionIssueDate">Issue Date</label>
+              <input
+                type="date"
+                id="transactionIssueDate"
+                name="issueDate"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="transactionDueDate">Due Date</label>
+              <input
+                type="date"
+                id="transactionDueDate"
+                name="dueDate"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%; margin-top: 15px"
+            >
+              Issue Book
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
